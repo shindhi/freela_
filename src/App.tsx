@@ -5,14 +5,15 @@ import { twMerge } from 'tailwind-merge'
 
 import * as Input from './components/Input'
 import { Button } from './components/button'
+import { Gauge } from './components/Gauge'
 
 export function App() {
   return (
     <>
       <div className="grid min-h-screen grid-cols-app gap-4 bg-zinc-950 p-4">
         <div className="flex flex-col justify-between gap-3 rounded-2xl bg-zinc-900">
-          <div className="flex justify-center p-4">
-            <span className="w-full text-center text-5xl font-semibold text-white">
+          <div className="flex justify-center p-6">
+            <span className="w-full text-center text-7xl font-semibold text-white">
               00:00
             </span>
 
@@ -33,10 +34,16 @@ export function App() {
             </div>
           </div>
 
-          <div className="flex justify-between gap-3 p-4">
-            <div className="h-24 w-24 rounded bg-white"></div>
-            <div className="h-24 w-24 rounded bg-white"></div>
-            <div className="h-24 w-24 rounded bg-white"></div>
+          <div className="flex justify-between gap-5 p-4">
+            <div className="box-content flex-1 rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+              <Gauge value={50} />
+            </div>
+            <div className="box-content flex-1 rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+              <Gauge value={50} />
+            </div>
+            <div className="box-content flex-1 rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+              <Gauge value={30} />
+            </div>
           </div>
         </div>
 
@@ -64,19 +71,54 @@ export function App() {
           </form>
         </div>
 
-        <div className="col-span-full grid grid-cols-6 rounded-2xl bg-zinc-900 p-4">
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
-          <div className="h-24 w-24 self-center justify-self-center rounded bg-white"></div>
+        <div className="col-span-full box-content grid grid-cols-6 gap-6 rounded-2xl bg-zinc-900 p-4">
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
+
+          <div className="rounded-lg border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <Gauge value={100} />
+          </div>
         </div>
       </div>
     </>
