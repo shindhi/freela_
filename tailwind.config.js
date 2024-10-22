@@ -4,7 +4,10 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        app: '1fr minmax(18rem, 20rem)',
+        app: '1fr minmax(20rem, 22rem)',
+      },
+      lineHeight: {
+        96: '24rem',
       },
     },
   },
