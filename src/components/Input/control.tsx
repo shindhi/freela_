@@ -8,7 +8,8 @@ export function Control(props: ControlProps) {
     <input
       {...props}
       className={twMerge(
-        'rounded-lg py-1 px-2 placeholder:text-zinc-500 bg-white/5 border border-white/10 outline-none focus:ring-0',
+        'rounded-lg border border-white/10 bg-white/5 px-2 py-1 outline-none placeholder:text-zinc-500 focus:ring-0',
+        'hover:border-white/20',
         'focus:border-blue-500 focus:ring-1 focus:ring-blue-500',
       )}
     />

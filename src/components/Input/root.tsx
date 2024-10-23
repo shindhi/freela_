@@ -10,7 +10,7 @@ export function Root(props: RootProps) {
     <div
       {...props}
       className={twMerge(
-        'text-white flex flex-col gap-1 w-full',
+        'flex w-full flex-col gap-1 text-white',
         props.className,
       )}
     />
