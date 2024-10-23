@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@hookform/resolvers':
+        specifier: ^3.9.0
+        version: 3.9.0(react-hook-form@7.53.1(react@18.3.1))
       date-fns:
         specifier: ^4.1.0
         version: 4.1.0
@@ -23,12 +26,18 @@ importers:
       react-gauge-component:
         specifier: ^1.2.61
         version: 1.2.61(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react-hook-form:
+        specifier: ^7.53.1
+        version: 7.53.1(react@18.3.1)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.5.4
       tailwind-variants:
         specifier: ^0.2.1
         version: 0.2.1(tailwindcss@3.4.14)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@rocketseat/eslint-config':
         specifier: ^2.2.2
@@ -322,6 +331,11 @@ packages:
   '@eslint/js@8.57.1':
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  '@hookform/resolvers@3.9.0':
+    resolution: {integrity: sha512-bU0Gr4EepJ/EQsH/IwEzYLsT/PEj5C0ynLQ4m+GSHS+xKH4TfSelhluTgOaoc4kA5s7eCsQbM4wvZLzELmWzUg==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
 
   '@humanwhocodes/config-array@0.13.0':
     resolution: {integrity: sha512-DZLEEqFWQFiyK6h5YIeynKx7JlvCYWL0cImfSRXZ9l4Sg2efkFGTuFf6vzXjK1cq6IYkU+Eg/JizXw+TD2vRNw==}
@@ -2175,6 +2189,12 @@ packages:
       react: ^16.8.2 || ^17.0 || ^18.x
       react-dom: ^16.8.2 || ^17.0 || ^18.x
 
+  react-hook-form@7.53.1:
+    resolution: {integrity: sha512-6aiQeBda4zjcuaugWvim9WsGqisoUk+etmFEsSUMm451/Ic8L/UAb7sRtMj3V+Hdzm6mMjU1VhiSzYUZeBm0Vg==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -2594,6 +2614,9 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
+  zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -2819,6 +2842,10 @@ snapshots:
 
   '@eslint/js@8.57.1': {}
 
+  '@hookform/resolvers@3.9.0(react-hook-form@7.53.1(react@18.3.1))':
+    dependencies:
+      react-hook-form: 7.53.1(react@18.3.1)
+
   '@humanwhocodes/config-array@0.13.0':
     dependencies:
       '@humanwhocodes/object-schema': 2.0.3
@@ -2881,7 +2908,7 @@ snapshots:
       eslint: 8.57.1
       eslint-config-prettier: 9.1.0(eslint@8.57.1)
       eslint-config-standard: 17.1.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1))(eslint-plugin-n@16.6.2(eslint@8.57.1))(eslint-plugin-promise@6.6.0(eslint@8.57.1))(eslint@8.57.1)
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.10.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)
       eslint-plugin-jsx-a11y: 6.10.0(eslint@8.57.1)
       eslint-plugin-n: 16.6.2(eslint@8.57.1)
       eslint-plugin-prettier: 5.2.1(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.3.3)
@@ -3978,7 +4005,7 @@ snapshots:
   eslint-config-standard@17.1.0(eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1))(eslint-plugin-n@16.6.2(eslint@8.57.1))(eslint-plugin-promise@6.6.0(eslint@8.57.1))(eslint@8.57.1):
     dependencies:
       eslint: 8.57.1
-      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)
+      eslint-plugin-import: 2.31.0(@typescript-eslint/parser@8.10.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1)
       eslint-plugin-n: 16.6.2(eslint@8.57.1)
       eslint-plugin-promise: 6.6.0(eslint@8.57.1)
 
@@ -4007,7 +4034,7 @@ snapshots:
       eslint: 8.57.1
       eslint-compat-utils: 0.5.1(eslint@8.57.1)
 
-  eslint-plugin-import@2.31.0(@typescript-eslint/parser@6.21.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1):
+  eslint-plugin-import@2.31.0(@typescript-eslint/parser@8.10.0(eslint@8.57.1)(typescript@5.6.3))(eslint@8.57.1):
     dependencies:
       '@rtsao/scc': 1.1.0
       array-includes: 3.1.8
@@ -4030,7 +4057,7 @@ snapshots:
       string.prototype.trimend: 1.0.8
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      '@typescript-eslint/parser': 6.21.0(eslint@8.57.1)(typescript@5.6.3)
+      '@typescript-eslint/parser': 8.10.0(eslint@8.57.1)(typescript@5.6.3)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -4856,6 +4883,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  react-hook-form@7.53.1(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+
   react-is@16.13.1: {}
 
   react-refresh@0.14.2: {}
@@ -5363,3 +5394,5 @@ snapshots:
   yaml@2.6.0: {}
 
   yocto-queue@0.1.0: {}
+
+  zod@3.23.8: {}
