@@ -2,12 +2,44 @@ import './index.css'
 
 import { Power, PowerOff } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
+import { Controller, useForm } from 'react-hook-form'
+import * as z from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as Input from './components/Input'
 import { Button } from './components/button'
 import { Gauge } from './components/Gauge'
 
+const newSettingsFormSchema = z.object({
+  step1: z.number(),
+  step2: z.number(),
+  step3: z.number(),
+  step4: z.number(),
+  frequency: z.enum(['25', '60']),
+})
+
+type NewSettingsFormInputs = z.infer<typeof newSettingsFormSchema>
+
 export function App() {
+  const {
+    reset,
+    control,
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<NewSettingsFormInputs>({
+    resolver: zodResolver(newSettingsFormSchema),
+    defaultValues: {
+      frequency: '25',
+    },
+  })
+
+  async function handleCreateNewSettings(data: NewSettingsFormInputs) {
+    const { step1, step2, step3, step4, frequency } = data
+
+    reset()
+  }
+
   return (
     <>
       <div className="grid min-h-screen grid-cols-app gap-4 bg-zinc-950 p-4">
@@ -48,51 +80,58 @@ export function App() {
         </div>
 
         <div className="rounded-2xl bg-zinc-900 p-4">
-          <form className="flex flex-col gap-5">
+          <form
+            className="flex flex-col gap-5"
+            onSubmit={handleSubmit(handleCreateNewSettings)}
+          >
             <Input.Root>
               <Input.Label htmlFor="step1">Passo 1 [m]</Input.Label>
-              <Input.Control type="number" id="step1" placeholder="Ex: 0" />
+              <Input.Control
+                type="number"
+                id="step1"
+                placeholder="Ex: 0"
+                required
+                {...register('step1')}
+              />
             </Input.Root>
 
             <Input.Root>
               <Input.Label htmlFor="step2">Passo 2 [s]</Input.Label>
-              <Input.Control type="number" id="step2" placeholder="Ex: 0" />
+              <Input.Control
+                type="number"
+                id="step2"
+                placeholder="Ex: 0"
+                required
+                {...register('step2')}
+              />
             </Input.Root>
 
             <Input.Root>
               <Input.Label htmlFor="step3">Passo 3 [m]</Input.Label>
-              <Input.Control type="number" id="step3" placeholder="Ex: 0" />
+              <Input.Control
+                type="number"
+                id="step3"
+                placeholder="Ex: 0"
+                required
+                {...register('step3')}
+              />
             </Input.Root>
 
             <Input.Root>
               <Input.Label htmlFor="step4">T. Max °C</Input.Label>
-              <Input.Control type="number" id="step4" placeholder="Ex: 0" />
+              <Input.Control
+                type="number"
+                id="step4"
+                placeholder="Ex: 0"
+                required
+                {...register('step4')}
+              />
             </Input.Root>
 
             <div className="flex flex-col gap-1 font-semibold">
               <span className="text-white">Frequência</span>
 
-              <div className="flex justify-between gap-4">
-                <button
-                  className={twMerge(
-                    'flex flex-1 items-center justify-center rounded-lg border border-white/10 bg-white/5 py-2 text-white outline-none',
-                    'hover:border-white/20',
-                    '[data-state="checked"]:border-blue-500 [data-state="checked"]:bg-blue-500/30',
-                  )}
-                >
-                  25
-                </button>
-
-                <button
-                  className={twMerge(
-                    'flex flex-1 items-center justify-center rounded-lg border border-white/10 bg-white/5 py-2 text-white outline-none',
-                    'hover:border-white/20',
-                    '[data-state="checked"]:border-blue-500 [data-state="checked"]:bg-blue-500/30',
-                  )}
-                >
-                  60
-                </button>
-              </div>
+              
             </div>
 
             <button
@@ -100,7 +139,8 @@ export function App() {
                 'mt-10 flex cursor-pointer items-center justify-center rounded-lg border border-blue-500 py-2 font-semibold text-white transition',
                 'enabled:hover:bg-blue-500/90 disabled:cursor-not-allowed disabled:border-blue-500/30 disabled:text-white/30',
               )}
-              disabled={false}
+              disabled={isSubmitting}
+              type="submit"
             >
               Salvar
             </button>
