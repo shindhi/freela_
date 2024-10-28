@@ -1,44 +1,45 @@
 import './index.css'
 
+import { FormEvent } from 'react'
 import { Power, PowerOff } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
-import { Controller, useForm } from 'react-hook-form'
+import { useForm, FormProvider } from 'react-hook-form'
 import * as z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import * as Input from './components/Input'
+import * as RadioGroup from './components/RadioGroup'
 import { Button } from './components/button'
 import { Gauge } from './components/Gauge'
 
 const newSettingsFormSchema = z.object({
-  step1: z.number(),
-  step2: z.number(),
-  step3: z.number(),
-  step4: z.number(),
+  step1: z.coerce.number(),
+  step2: z.coerce.number(),
+  step3: z.coerce.number(),
+  step4: z.coerce.number(),
   frequency: z.enum(['25', '60']),
 })
 
 type NewSettingsFormInputs = z.infer<typeof newSettingsFormSchema>
 
 export function App() {
-  const {
-    reset,
-    control,
-    register,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = useForm<NewSettingsFormInputs>({
+  const newSettingsForm = useForm<NewSettingsFormInputs>({
     resolver: zodResolver(newSettingsFormSchema),
     defaultValues: {
       frequency: '25',
     },
   })
 
-  async function handleCreateNewSettings(data: NewSettingsFormInputs) {
-    const { step1, step2, step3, step4, frequency } = data
-
+  async function createNewSettings(data: NewSettingsFormInputs) {
+    console.log(data)
     reset()
   }
+
+  const {
+    formState: { isSubmitting },
+    reset,
+    handleSubmit,
+  } = newSettingsForm
 
   return (
     <>
@@ -80,71 +81,52 @@ export function App() {
         </div>
 
         <div className="rounded-2xl bg-zinc-900 p-4">
-          <form
-            className="flex flex-col gap-5"
-            onSubmit={handleSubmit(handleCreateNewSettings)}
-          >
-            <Input.Root>
-              <Input.Label htmlFor="step1">Passo 1 [m]</Input.Label>
-              <Input.Control
-                type="number"
-                id="step1"
-                placeholder="Ex: 0"
-                required
-                {...register('step1')}
-              />
-            </Input.Root>
-
-            <Input.Root>
-              <Input.Label htmlFor="step2">Passo 2 [s]</Input.Label>
-              <Input.Control
-                type="number"
-                id="step2"
-                placeholder="Ex: 0"
-                required
-                {...register('step2')}
-              />
-            </Input.Root>
-
-            <Input.Root>
-              <Input.Label htmlFor="step3">Passo 3 [m]</Input.Label>
-              <Input.Control
-                type="number"
-                id="step3"
-                placeholder="Ex: 0"
-                required
-                {...register('step3')}
-              />
-            </Input.Root>
-
-            <Input.Root>
-              <Input.Label htmlFor="step4">T. Max °C</Input.Label>
-              <Input.Control
-                type="number"
-                id="step4"
-                placeholder="Ex: 0"
-                required
-                {...register('step4')}
-              />
-            </Input.Root>
-
-            <div className="flex flex-col gap-1 font-semibold">
-              <span className="text-white">Frequência</span>
-
-              
-            </div>
-
-            <button
-              className={twMerge(
-                'mt-10 flex cursor-pointer items-center justify-center rounded-lg border border-blue-500 py-2 font-semibold text-white transition',
-                'enabled:hover:bg-blue-500/90 disabled:cursor-not-allowed disabled:border-blue-500/30 disabled:text-white/30',
-              )}
-              disabled={isSubmitting}
-              type="submit"
+          <FormProvider {...newSettingsForm}>
+            <form
+              className="flex flex-col gap-5"
+              onSubmit={handleSubmit(createNewSettings)}
             >
-              Salvar
-            </button>
-          </form>
+              <Input.Root>
+                <Input.Label htmlFor="step1">Passo 1 [m]</Input.Label>
+                <Input.Control type="number" placeholder="Ex: 0" name="step1" />
+              </Input.Root>
+
+              <Input.Root>
+                <Input.Label htmlFor="step2">Passo 2 [s]</Input.Label>
+                <Input.Control type="number" name="step2" placeholder="Ex: 0" />
+              </Input.Root>
+
+              <Input.Root>
+                <Input.Label htmlFor="step3">Passo 3 [m]</Input.Label>
+                <Input.Control type="number" name="step3" placeholder="Ex: 0" />
+              </Input.Root>
+
+              <Input.Root>
+                <Input.Label htmlFor="step4">T. Max °C</Input.Label>
+                <Input.Control type="number" name="step4" placeholder="Ex: 0" />
+              </Input.Root>
+
+              <div className="flex flex-col gap-1 font-semibold">
+                <span className="text-white">Frequência</span>
+
+                <RadioGroup.Root title="Frequência">
+                  <RadioGroup.Item value="25" label="25" name="frequency" />
+                  <RadioGroup.Item value="60" label="60" name="frequency" />
+                </RadioGroup.Root>
+              </div>
+
+              <button
+                className={twMerge(
+                  'mt-10 flex cursor-pointer items-center justify-center rounded-lg border border-blue-500 py-2 font-semibold text-white transition',
+                  'enabled:hover:bg-blue-500/90 disabled:cursor-not-allowed disabled:border-blue-500/30 disabled:text-white/30',
+                )}
+                disabled={isSubmitting}
+                type="submit"
+              >
+                Salvar
+              </button>
+            </form>
+          </FormProvider>
         </div>
 
         <div className="col-span-full box-content grid grid-cols-6 gap-6 rounded-2xl bg-zinc-900 p-4">
