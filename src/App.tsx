@@ -83,7 +83,7 @@ export function App() {
         <div className="rounded-2xl bg-zinc-900 p-4">
           <FormProvider {...newSettingsForm}>
             <form
-              className="flex flex-col gap-5"
+              className="flex h-full flex-col gap-5"
               onSubmit={handleSubmit(createNewSettings)}
             >
               <Input.Root>
@@ -107,8 +107,6 @@ export function App() {
               </Input.Root>
 
               <div className="flex flex-col gap-1 font-semibold">
-                <span className="text-white">Frequência</span>
-
                 <RadioGroup.Root title="Frequência">
                   <RadioGroup.Item value="25" label="25" name="frequency" />
                   <RadioGroup.Item value="60" label="60" name="frequency" />
@@ -117,7 +115,7 @@ export function App() {
 
               <button
                 className={twMerge(
-                  'mt-10 flex cursor-pointer items-center justify-center rounded-lg border border-blue-500 py-2 font-semibold text-white transition',
+                  'mt-auto flex cursor-pointer items-center justify-center rounded-lg border border-blue-500 py-3 font-semibold text-white transition',
                   'enabled:hover:bg-blue-500/90 disabled:cursor-not-allowed disabled:border-blue-500/30 disabled:text-white/30',
                 )}
                 disabled={isSubmitting}
