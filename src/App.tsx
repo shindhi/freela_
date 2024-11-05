@@ -1,6 +1,6 @@
 import './index.css'
 
-import { Power, PowerOff } from 'lucide-react'
+import { Play, Pause } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
 import { useForm, FormProvider } from 'react-hook-form'
 import * as z from 'zod'
@@ -44,13 +44,36 @@ export function App() {
     <>
       <div className="grid min-h-screen grid-cols-app gap-4 bg-zinc-950 p-4">
         <div className="flex flex-col justify-between gap-3 rounded-2xl bg-zinc-900">
-          <div className="mt-6 flex justify-center p-6">
-            <div className="w-full text-center text-7xl font-semibold text-white">
-              <span>00:00</span>
-              <span className="underline">reset</span>
+          <div className="flex justify-center p-6">
+            <div className="flex w-full justify-center">
+              <div className="flex items-center gap-20 rounded-3xl bg-zinc-950 px-4 py-3 text-white">
+                <div className="flex flex-col">
+                  <span className="text-lg text-zinc-500">Tempo</span>
+                  <span className="text-6xl font-medium tracking-wide text-zinc-200">
+                    16:15
+                  </span>
+                  <button className="mr-auto mt-6 cursor-pointer rounded-lg bg-zinc-600 px-4 py-1 text-lg font-medium">
+                    Resetar
+                  </button>
+                </div>
+
+                <div className="flex h-36 w-36 items-center justify-center rounded-3xl bg-blue-500 p-4">
+                  <div className="rounded-full border-8">
+                    <button className="rounded-full bg-zinc-900 p-6">
+                      <Play size={40} />
+                      {/* <Pause size={40} /> */}
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="ml-auto flex gap-4">
+            {/* <div className="w-full text-center text-7xl font-semibold text-white">
+              <span>00:00</span>
+              <span className="underline">reset</span>
+            </div> */}
+
+            {/* <div className="ml-auto flex gap-4">
               <Button
                 className="border-green-600 text-green-600 transition hover:bg-green-600/30"
                 variant="outline"
@@ -64,7 +87,7 @@ export function App() {
               >
                 <PowerOff strokeWidth={2} size={28} />
               </Button>
-            </div>
+            </div> */}
           </div>
 
           <div className="flex justify-between gap-5 p-4">
